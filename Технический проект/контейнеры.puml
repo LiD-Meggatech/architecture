@@ -6,11 +6,6 @@
 !define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
 !includeurl ICONURL/common.puml
 
-' limit text width
-skinparam wrapWidth 250
-skinparam wrapMessageWidth 200
-
-'
 title "MeggatechInsider. Диаграмма контейнеров"
 
 
@@ -20,13 +15,13 @@ Person(personUser, "Пользователь", "Просматривает, из
 
 System_Boundary(systemRecipe, "Веб-приложение для работы с документацией") {
 
-    Container(clientWebApp, "Веб-интерфейс", "Chrome 80+, Safari 12+; SPA на ReactJS", "Предоставляет интерфейс для просмотра, редактирование данных документации")
+    Container(clientWebApp, "Веб-интерфейс", "container: SPA на ReactJS", "Предоставляет интерфейс для просмотра, редактирование данных документации")
         personUser --> clientWebApp : "Просмотр, изменение документации"
 
-    Container(serviceBackendApp, "Сервер", "C#", "Управление логикой получения, изменения, добавления данных.")
-        clientWebApp --> serviceBackendApp : "[HTTP; REST]"
+    Container(serviceBackendApp, "API Application", "container: ASP .NET Core API", "Предоставляет API для работы с данными.")
+        clientWebApp --> serviceBackendApp : "API-вызовы: [HTTP; REST]"
 
-    ContainerDb(db, "База данных", "MSSQL", "Данные расписания, отчетности")
-        serviceBackendApp --> db : "[Entity]"
+    ContainerDb(db, "Database", "container: MSSQL", "Хранение данных")
+        serviceBackendApp --> db : "читает/пишет в базу"
 }
 @enduml

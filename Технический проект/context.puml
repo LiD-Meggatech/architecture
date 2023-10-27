@@ -1,0 +1,12 @@
+@startuml Диаграмма контекста
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Диаграмма контекста
+
+Person(user, "Пользователи", "Пользователи нашей системы")
+
+System(system, "Внутренняя система работы с документацией", "Позволяет авторизоваться, составить отчеты по разным тематикам; работать с расписанием, преподавателями")
+
+Rel(user, system, "Входят в систему")
+
+@enduml
