@@ -138,8 +138,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "08c53b7913fdff3b",
+  "active": "f6b285bdc96dffa8",
   "lastOpenFiles": [
+    "Технический проект/code.puml",
+    "out/Технический проект/components/Компоненты.png",
+    "out/Технический проект/components",
+    "Технический проект/components.puml",
     "Технический проект/Контейнеры.md",
     "Технический проект/Компоненты.md",
     "out/Технический проект/контейнеры/Диаграмма контейнеров.png",

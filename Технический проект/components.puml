@@ -1,0 +1,39 @@
+@startuml Компоненты
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Component diagram for MeggatechInsider - API Application
+
+Container(spa, "Single Page Application", "React JS", "Предоставляет все функции приложения через веб-браузер")
+ContainerDb(db, "База данных", "MSSQL", "Хранит информацию о пользователе, данные для работы с расписанием и учителями")
+Container(excel, "Шаблонизатор", "C#", "Преобразование данных в excel")
+Container(sheduleStorage, "Хранилище", "Сохраняет и загружает расписание")
+
+Container_Boundary(api, "API Application") {
+    Component(sign, "Контроллер входа", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(sheduleSettings, "Настройки расписания", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(teacherGuid, "Справочник по преподавателям для расписания", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(shedule, "Расписание", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(subjects, "Учебный план. Предметы", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(teachers, "Учебный план. Преподаватели", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+    Component(assignment, "Учебный план. Назначение", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
+}
+
+Rel(spa, sign, 'HTTPS');
+Rel(spa, excel, 'данные');
+Rel(spa, sheduleStorage, 'расписание');
+Rel(spa, sheduleSettings, 'HTTPS');
+Rel(spa, teacherGuid, 'HTTPS');
+Rel(spa, shedule, 'HTTPS');
+Rel(spa, subjects, 'HTTPS');
+Rel(spa, teachers, 'HTTPS');
+Rel(spa, assignment, 'HTTPS');
+
+Rel(sign, db, 'чтение/запись');
+Rel(sheduleSettings, db, 'чтение/запись');
+Rel(teacherGuid, db, 'чтение/запись');
+Rel(shedule, db, 'чтение/запись');
+Rel(subjects, db, 'чтение/запись');
+Rel(teachers, db, 'чтение/запись');
+Rel(assignment, db, 'чтение/запись');
+
+@enduml
