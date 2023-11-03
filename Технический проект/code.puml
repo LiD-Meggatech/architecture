@@ -1,0 +1,191 @@
+@startuml Code
+
+interface IRepository
+{
+    public void Add( TEntity entity );
+    public void Add( IEnumerable<TEntity> entities );
+    public void Remove( TEntity entity );
+    public void Remove( IEnumerable<TEntity> entities );
+    public void SaveChanges();
+}
+
+interface ITeacherCategoryRepository
+{
+    public List<TeacherCategory> GetAll();
+    public TeacherCategory GetById( int id );
+}
+
+interface IPaymentTypeRepository
+{
+    public List<PaymentType> GetAll();
+    public PaymentType GetById( int id );
+}
+
+interface ITeacherRepository
+{
+    public List<Teacher> GetAll();
+    public Teacher GetById( int id );
+    public List<Teacher> GetByCategoryId( int id );
+    public List<Teacher> GetContractTypeId( int id );
+    public List<Teacher> GetByEducationId( int id );
+}
+
+interface ISubjectCategoryRepository
+{
+    public List<SubjectCategory> GetAll();
+    public SubjectCategory GetById( int id );
+}
+
+interface ILessonRepository
+{
+    public List<Lesson> GetAll();
+    public Lesson GetById( int id );
+    public List<Lesson> GetByStudentGroup( int id );
+    public List<Lesson> GetBySubjectId( int id );
+    public List<Lesson> GetByTeacherId( int id );
+}
+interface ISubjectRepository
+{
+    public List<Subject> GetAll();
+    public Subject GetById( int id );
+    public List<Subject> GetByPaymentTypeId( int id );
+    public List<Subject> GetByTypeId( int id );
+    public List<Subject> GetByCategoryId( int id );
+}
+
+interface IClassStudentGroupRepository
+{
+    public List<T> GetAll();
+    public T GetById( int id );
+}
+
+interface ISubjectTypeRepository
+{
+    public List<SubjectType> GetAll();
+    public SubjectType GetById( int id );
+}
+
+interface IContractTypeRepository
+{
+    public List<ContractType> GetAll();
+    public ContractType GetById( int id );
+}
+
+interface IEducationRepository
+{
+    public List<Education> GetAll();
+    public Education GetById( int id );
+}
+
+class Repository
+{
+    public void Add( TEntity entity );
+    public void Add( IEnumerable<TEntity> entities );
+    public void Remove( TEntity entity );
+    public void Remove( IEnumerable<TEntity> entities );
+    public void SaveChanges();
+}
+
+class TeacherCategoryRepository
+{
+    public List<TeacherCategory> GetAll();
+    public TeacherCategory GetById( int id );
+}
+
+class PaymentTypeRepository
+{
+    public List<PaymentType> GetAll();
+    public PaymentType GetById( int id );
+}
+
+class TeacherRepository
+{
+    public List<Teacher> GetAll();
+    public Teacher GetById( int id );
+    public List<Teacher> GetByCategoryId( int id );
+    public List<Teacher> GetContractTypeId( int id );
+    public List<Teacher> GetByEducationId( int id );
+}
+
+class SubjectCategoryRepository
+{
+    public List<SubjectCategory> GetAll();
+    public SubjectCategory GetById( int id );
+}
+
+class LessonRepository
+{
+    public List<Lesson> GetAll();
+    public Lesson GetById( int id );
+    public List<Lesson> GetByStudentGroup( int id );
+    public List<Lesson> GetBySubjectId( int id );
+    public List<Lesson> GetByTeacherId( int id );
+}
+class SubjectRepository
+{
+    public List<Subject> GetAll();
+    public Subject GetById( int id );
+    public List<Subject> GetByPaymentTypeId( int id );
+    public List<Subject> GetByTypeId( int id );
+    public List<Subject> GetByCategoryId( int id );
+}
+
+class ClassStudentGroupRepository
+{
+    public List<T> GetAll();
+    public T GetById( int id );
+}
+
+class SubjectTypeRepository
+{
+    public List<SubjectType> GetAll();
+    public SubjectType GetById( int id );
+}
+
+class ContractTypeRepository
+{
+    public List<ContractType> GetAll();
+    public ContractType GetById( int id );
+}
+
+class EducationRepository
+{
+    public List<Education> GetAll();
+    public Education GetById( int id );
+}
+
+IRepository <|-- IClassStudentGroupRepository
+IRepository <|-- ITeacherCategoryRepository
+IRepository <|-- IPaymentTypeRepository
+IRepository <|-- ITeacherRepository
+IRepository <|-- ISubjectCategoryRepository
+IRepository <|-- ISubjectTypeRepository
+IRepository <|-- IContractTypeRepository
+IRepository <|-- IEducationRepository
+IRepository <|-- ISubjectRepository
+IRepository <|-- ILessonRepository
+
+Repository <|-- ClassStudentGroupRepository
+Repository <|-- TeacherCategoryRepository
+Repository <|-- PaymentTypeRepository
+Repository <|-- TeacherRepository
+Repository <|-- SubjectCategoryRepository
+Repository <|-- SubjectTypeRepository
+Repository <|-- ContractTypeRepository
+Repository <|-- EducationRepository
+Repository <|-- SubjectRepository
+Repository <|-- LessonRepository
+
+Repository <|.. IRepository
+ClassStudentGroupRepository <|.. IClassStudentGroupRepository
+TeacherCategoryRepository <|.. ITeacherCategoryRepository
+PaymentTypeRepository <|.. IPaymentTypeRepository
+TeacherRepository <|.. ITeacherRepository
+SubjectCategoryRepository <|.. ISubjectCategoryRepository
+SubjectTypeRepository <|.. ISubjectTypeRepository
+ContractTypeRepository <|.. IContractTypeRepository
+EducationRepository <|.. IEducationRepository
+SubjectRepository <|.. ISubjectRepository
+LessonRepository <|.. ILessonRepository
+
+@enduml
