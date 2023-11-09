@@ -1,0 +1,21 @@
+@startuml Удаление преподавателя
+    autonumber
+
+    actor Client
+    
+    participant UI
+    participant Server
+    participant Db
+
+    Client -> UI: Нажимает кнопку "Преподаватели"
+    UI -> UI: Переходит на страничку "Преподаватели"
+    Client <-- UI: Показывает страницу "Преподаватели"
+
+    Client -> UI: нажимает кнопку "удалить"
+    UI -> Server: Отправка данных
+    Server -> Db: Запрос об удалении данных 
+    Server <-- Db: Отправка ответа 
+    UI <-- Server: Отправка ответа
+    Client <-- UI: Отображение ответа, что все успешно
+
+@enduml

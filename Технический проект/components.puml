@@ -5,8 +5,6 @@ title Component diagram for MeggatechInsider - API Application
 
 Container(spa, "Single Page Application", "React JS", "Предоставляет все функции приложения через веб-браузер")
 ContainerDb(db, "База данных", "MSSQL", "Хранит информацию о пользователе, данные для работы с расписанием и учителями")
-Container(excel, "Шаблонизатор", "C#", "Преобразование данных в excel")
-Container(sheduleStorage, "Хранилище", "Сохраняет и загружает расписание")
 
 Container_Boundary(api, "API Application") {
     Component(sign, "Контроллер входа", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
@@ -26,6 +24,11 @@ Container_Boundary(api, "API Application") {
     Component(subjectsServices, "Сервис с бизнес-логикой для Учебный план. Предметы", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными предметов для расписания")
     Component(teachersServices, "Сервис с бизнес-логикой для Учебный план. Преподаватели", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными о преподавателях")
     Component(assignmentServices, "Сервис с бизнес-логикой для Учебный план. Назначение", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными назначения на уроки")
+}
+
+Container_Boundary(api, "API Application") {
+    Component(excel, "Шаблонизатор", "C#", "Преобразование данных в excel")
+    Component(sheduleStorage, "Хранилище", "Сохраняет и загружает расписание")
 }
 
 Rel(spa, sheduleSettings, 'HTTPS');
