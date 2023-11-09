@@ -1,0 +1,11 @@
+@startuml Выход
+    autonumber
+
+    actor Client
+    
+    participant UI
+
+    Client -> UI: Нажимает на кнопку "Выход"
+    UI -> UI: Удаляет данные из кэша
+    Client <-- UI: Отображает сообщение о выходе из приложения
+@enduml

@@ -1,0 +1,20 @@
+@startuml Сохранение в excel
+    autonumber
+
+    actor Client
+    
+    participant UI
+    participant Server
+    participant Db
+
+    Client -> UI: Нажимает кнопку "Расписание занятий"
+    UI -> UI: Переходит на страничку "Расписание занятий"
+    Client <-- UI: Показывает страницу "Расписание занятий"
+    Client -> UI: Нажимает кнопку "Сохранить в excel"
+    UI -> Server: Отправка данных
+    Server -> Db: Запрос об преобразовании в excel
+    Server <-- Db: Отправка ответа 
+    UI <-- Server: Отправка ответа
+    Client <-- UI: Отображение ответа, что все успешно
+    Client <-- Server: Отдает сгенерированный файл excel
+@enduml

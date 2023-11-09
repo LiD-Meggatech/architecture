@@ -1,0 +1,19 @@
+@startuml Сохранение в табель
+    autonumber
+
+    actor Client
+    
+    participant UI
+    participant Server
+    participant Db
+
+    Client -> UI: Нажимает кнопку "Расписание занятий"
+    UI -> UI: Переходит на страничку "Расписание занятий"
+    Client <-- UI: Показывает страницу "Расписание занятий"
+    Client -> UI: Нажимает кнопку "Сохранить в табель"
+    UI -> Server: Отправка данных
+    Server -> Db: Запрос об сохранении в табель
+    Server <-- Db: Отправка ответа 
+    UI <-- Server: Отправка ответа
+    Client <-- UI: Отображение ответа, что все успешно
+@enduml
