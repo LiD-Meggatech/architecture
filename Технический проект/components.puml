@@ -6,7 +6,7 @@ title Component diagram for MeggatechInsider - API Application
 Container(spa, "Single Page Application", "React JS", "Предоставляет все функции приложения через веб-браузер")
 ContainerDb(db, "База данных", "MSSQL", "Хранит информацию о пользователе, данные для работы с расписанием и учителями")
 
-Container_Boundary(api, "API Application") {
+Container_Boundary(api, "Core Application") {
     Component(sign, "Контроллер входа", "Веб-апи контроллер", "Позволяет пользователям войти в приложение")
     Component(sheduleSettings, "Настройки расписания", "Веб-апи контроллер", "Позволяет работать с настройками расписания")
     Component(teacherGuid, "Справочник по преподавателям для расписания", "Веб-апи контроллер", "Позволяет считывать и изменять информацию о преподавателях для расписания")
@@ -16,7 +16,7 @@ Container_Boundary(api, "API Application") {
     Component(assignment, "Учебный план. Назначение", "Веб-апи контроллер", "Позволяет пользователям изменять назначение на уроки")
 }
 
-Container_Boundary(api, "API Application") {
+Container_Boundary(api, "Core Application") {
     Component(signServices, "Сервис с бизнес-логикой входа", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными входа")
     Component(sheduleSettingsServices, "Сервис с бизнес-логикой настроек расписания", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными настроек расписания")
     Component(teacherGuidServices, "Сервис с бизнес-логикой для справочника по преподавателям для расписания", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными о преподавателях для расписания")
@@ -24,11 +24,9 @@ Container_Boundary(api, "API Application") {
     Component(subjectsServices, "Сервис с бизнес-логикой для Учебный план. Предметы", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными предметов для расписания")
     Component(teachersServices, "Сервис с бизнес-логикой для Учебный план. Преподаватели", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными о преподавателях")
     Component(assignmentServices, "Сервис с бизнес-логикой для Учебный план. Назначение", "Сервис с бизнес-логикой", "В нем проходит основная работа над данными назначения на уроки")
-}
-
-Container_Boundary(api, "API Application") {
     Component(excel, "Шаблонизатор", "C#", "Преобразование данных в excel")
     Component(sheduleStorage, "Хранилище", "Сохраняет и загружает расписание")
+    Component(databaseProvider, "Провайдер базы данных", "Работает с базой данных")
 }
 
 Rel(spa, sheduleSettings, 'HTTPS');
@@ -46,13 +44,13 @@ Rel(subjects, subjectsServices, 'данные');
 Rel(teachers, teachersServices, 'данные');
 Rel(assignment, assignmentServices, 'данные');
 
-Rel(signServices, db, 'чтение/запись');
-Rel(sheduleSettingsServices, db, 'чтение/запись');
-Rel(teacherGuidServices, db, 'чтение/запись');
-Rel(sheduleServices, db, 'чтение/запись');
-Rel(subjectsServices, db, 'чтение/запись');
-Rel(teachersServices, db, 'чтение/запись');
-Rel(assignmentServices, db, 'чтение/запись');
+Rel(signServices, databaseProvider, 'чтение/запись');
+Rel(sheduleSettingsServices, databaseProvider, 'чтение/запись');
+Rel(teacherGuidServices, databaseProvider, 'чтение/запись');
+Rel(sheduleServices, databaseProvider, 'чтение/запись');
+Rel(subjectsServices, databaseProvider, 'чтение/запись');
+Rel(teachersServices, databaseProvider, 'чтение/запись');
+Rel(assignmentServices, databaseProvider, 'чтение/запись');
 
 Rel(signServices, excel, 'данные');
 Rel(sheduleSettingsServices, excel, 'данные');
@@ -63,5 +61,7 @@ Rel(teachersServices, excel, 'данные');
 Rel(assignmentServices, excel, 'данные');
 
 Rel(sheduleServices, sheduleStorage, 'данные');
+
+Rel(databaseProvider, db, 'данные');
 
 @enduml
