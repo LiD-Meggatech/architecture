@@ -1,0 +1,13 @@
+@startuml
+start
+repeat :Ввод пароля;
+    :Валидация данных;
+    -> Проверка пароля;
+    if (Пароль верен) then (Да)
+        :вход в приложение;
+        stop
+    else (Нет)
+        :Вывод ошибки;
+    endif
+repeatwhile
+@enduml
