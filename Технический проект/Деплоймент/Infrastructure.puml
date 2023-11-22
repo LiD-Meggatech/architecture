@@ -1,0 +1,10 @@
+@startuml
+skinparam ranksep 20
+node "computer" as work_place <<device>> {
+  node "Docker" as computer_docker <<execution environment>> {
+    artifact база_данных
+    artifact веб_приложение
+    artifact асп_нет_приложение
+  }
+}
+@enduml
