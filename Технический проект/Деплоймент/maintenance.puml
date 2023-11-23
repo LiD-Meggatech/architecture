@@ -1,0 +1,29 @@
+@startuml
+
+package Development {
+    component "Разработчик" as developer
+    component "Visual Studio/VSCode" as IDE
+    component "Гитхаб-репозиторий" as github
+
+    developer --> IDE : "Пишет код"
+    IDE --> github : "commit"
+}
+
+package Production {
+    folder "Все файлы" as files {
+        package "Frontend"
+        package "Backend"
+        file "docker-compose.yaml"
+    }
+
+    node "Докер" as docker {
+        component "Веб-приложение"
+        component ".NET-приложение"
+        database "База данных"
+    }
+}
+
+github --> files : "clone/pull"
+files --> docker : "Обновить нужные файлы вручную"
+
+@enduml
