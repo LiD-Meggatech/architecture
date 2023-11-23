@@ -1,0 +1,28 @@
+@startuml
+skinparam ranksep 20
+rectangle "Local Network" {
+  node "Сервер" as work_place <<Windows 10, рабочий компьютер>> {
+    node "Докер" as computer_docker <<Виртуальная машина, Линукс>> {
+      database "База данных" as database <<MSSQL>> {
+        component "MSSQL" 
+      }
+      component "Веб-приложение" as web <<ReactJS>>
+      component "Ядро приложения(бэкенд)" as core <<.NET Application>>
+    }
+  }
+
+  node "Клиентское устройство" as client_device <<Windows, Linux, Macos>> {
+    card "Веб-браузер" as browser <<Google Chrome, Safari, Opera, Yandex>> {
+      frame "Single Page Application" as SPA
+    }
+  }
+
+  SPA --> web : "http-request"
+  web --> core : "http-request"
+  core --> database : "данные"
+}
+
+node guthub {
+  component "Архитектурный репозиторий"
+}
+@enduml
