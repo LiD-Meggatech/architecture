@@ -2,20 +2,16 @@
 
 package Development {
     component "Разработчик" as developer
-    component "Visual Studio/VSCode" as IDE
     component "Гитхаб-репозиторий" as github
+    rectangle "Добавление в область добавленных файлов" as add
+    rectangle "Коммит" as commit
 
-    developer --> IDE : "Пишет код"
-    IDE --> github : "commit"
+    developer --> add : "git add"
+    add --> commit: "git commit"
+    commit --> github: "git push"
 }
 
 package Production {
-    folder "Все файлы" as files {
-        package "Frontend"
-        package "Backend"
-        file "docker-compose.yaml"
-    }
-
     node "Докер" as docker {
         component "Веб-приложение"
         component ".NET-приложение"
@@ -23,7 +19,31 @@ package Production {
     }
 }
 
-github --> files : "clone/pull"
-files --> docker : "Обновить нужные файлы вручную"
+package GithubActions {
+    rectangle "checkout" as checkout
+    rectangle "login" as login
+    rectangle "Extract metadata" as metadata
+    rectangle "build and push frontend" as frontend
+    rectangle "build and push backend" as backend
+    rectangle "Images in DockerHub" as DockerHub
+}
+
+File Script {
+    rectangle "docker-compose down" as down
+    rectangle "docker-compose up --build -d" as up
+}
+
+github --> GithubActions : "run pipeline"
+
+checkout --> login
+login --> metadata
+metadata --> frontend
+frontend --> backend
+backend --> DockerHub
+
+DockerHub --> Script
+
+down --> up
+up --> docker
 
 @enduml
